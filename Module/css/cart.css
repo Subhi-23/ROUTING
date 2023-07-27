@@ -1,0 +1,128 @@
+html,
+body {
+  height: 100%
+}
+button{
+    border: none;
+    background-color: transparent;
+    margin: 10px;
+}
+
+.blur {
+    filter: blur(10px);  
+  }
+.buy{
+    background-color:blue;
+    padding: 10px;
+    margin: 15px;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+}
+#page{
+    margin: 50px;
+    border: 2px solid black;
+    margin: 30px;
+    padding: 30px;
+}
+#cartItems{
+    padding: 20px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+h4{
+    text-align: center;
+}
+p{
+    text-align: center;
+    margin: 0;
+}
+#page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+#summary p{
+    font-size: 18px;
+    margin: 10px 0px;
+}
+.IncDec{
+   font-size: 1.5rem;
+}
+#close{
+  top: 0;
+  right: 0;
+}
+input{
+    margin: 10px;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+input:focus{
+    outline: none;
+}
+#popup{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#btn{
+    background-color:blue;
+    padding: 10px;
+    margin: 15px;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+}
+button:disabled{
+    cursor: not-allowed
+}
+#main{
+    margin-top: 70px;
+}
+#check{
+    display: none;
+}
+#back{
+    display: none;
+}
+.card:hover{
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.container{
+    text-align: center;
+    
+    padding: 20px;
+    border-radius: 10px;
+    height: auto;
+}
+#ordersummary{   
+    display: block; 
+}
+lottie-player{
+    width: 500px; height: 500px;
+}
+
+ 
+@media(max-width: 900px){  
+    lottie-player{
+        height: 400px;
+        width:auto;
+        margin-bottom: 20px;
+    }  
+    #removeclass{
+        flex-direction: column !important;
+    }    
+}

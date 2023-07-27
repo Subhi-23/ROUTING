@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER HISTORY</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+</head>
+<style>
+ .back{
+        background-color: transparent;
+        border: none;
+        color: blue;
+       }
+  body{ 
+    margin:0;
+    padding:0;    
+    height:100vh;
+  }
+    .body{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      
+    }
+    .align{
+      display: flex;
+      align-items: flex-start;
+      justify-content: start;
+      flex-direction: row;
+      margin: 20px;
+    }
+    .card {
+     
+      position: relative;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s; 
+      border-radius: 10px;
+      margin: 20px;
+      padding: 20px;
+    }
+ 
+.button {
+  border:none;
+  border-radius: 6px;
+  background-color: #0d6efd;
+  color: #ffffff;
+  padding:  10px;
+}
+
+ 
+
+.button:disabled,
+button[disabled]{
+  border-radius: 6px;
+  border: none;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+ 
+ .flex{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    flex-direction: row;
+ }
+    a{
+        padding-bottom: 5px;
+    }
+
+.popup{ 
+  position:absolute;     
+           
+        margin-top: 20px; /*set to a negative number 1/2 of your height*/ 
+        
+        border-radius: 20px;
+        z-index:100; 
+
+}
+    @media (min-width: 1000px){
+      .card{
+        width: 50%;
+      }
+      
+    }
+    @media(max-width : 800px){
+       .flex{
+        padding: 10px;
+        flex-direction: column;
+      }
+    }
+</style>
+<body>
+  <div class="align">
+    <button class="back" ng-click="order()"> &#8592; Back</button>
+    <h2 style="text-align: center; margin: 20px;" class="text-primary" >YOUR ORDERS </h2>
+  </div> 
+ 
+    <div class="body container " ng-app="view" ng-controller="view" ng-init="viewfunction()" >
+      
+        <div class="card" ng-repeat=" Items in GetArray   "> 
+                  
+          <div class="container">
+            <div class="flex">
+              <h4>{{ $index + 1}}</h4>
+          
+              <p> {{Items.purchased_on}} </p>
+              <button class="button" ng-click="vieworder(Items.OrderId,Items.purchased_on)">view order</button>                                   
+          </div>
+    
+      </div> 
+                  
+    </div>  
+    <div class="popup body container" ng-show="popup" style="background-color: #0d6dfd9c ; padding: 20px;" >
+      <div class="card"  ng-repeat=" Items in GetArray   "> 
+               
+       <div class="container">
+         <div class="flex">
+            <h5 style="text-align: left;">{{Items.status}}</h5>
+            <div>
+              <h5>{{Items.ProductName}}</h5>
+              <p> {{formatTime(Items.purchased_on)}} </p>
+              <h4>{{Items.price}}</h4>
+            </div>
+           
+           <button class="button"   ng-disabled="Items.disabled" ng-click="cancel( Items.ProductId, Items.purchased_on , $index)">cancel</button>                                   
+       </div>
+ </div>
+   </div> 
+     <div>
+       <button class="button"  ng-click="closepopup()">close</button>
+     </div>
+   </div>
+    
+</body>
+</html>

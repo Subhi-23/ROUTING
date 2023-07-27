@@ -1,0 +1,38 @@
+.sortby{
+    margin: 50px; 
+}
+a{
+    text-decoration: none;
+    font-size: 24px;
+    color: rgb(72, 72, 72);
+    cursor: pointer;
+}
+#button{
+    background-color:  blue;
+    color: white
+}
+select{
+    padding: 5px 10px;
+    margin-right:20px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+.card{
+    padding: 0px !important;
+}
+.card:hover{
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+@media (max-width: 500px){
+    
+    #image{
+        display: none;
+    }
+    #flex{
+        justify-content: space-around;
+    }
+    .noflex{
+        flex: none;
+    }
+}

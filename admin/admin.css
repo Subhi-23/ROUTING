@@ -1,0 +1,17 @@
+.main{
+    margin-top: 20px;
+    padding: 20px;
+}
+ .form-control{
+    margin-bottom: 10px;
+ }
+
+ .response{
+    margin-top: 10px;
+ }
+@media (min-width: 1020px){
+    .main{
+        width: 60%;
+    }
+}
+ 

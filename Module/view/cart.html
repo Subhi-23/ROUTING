@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="Module/css/cart.css">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
+
+
+</head>
+  <body ng-app="Mycart" ng-controller="cartController">   
+    <div id="main" > 
+      <div    class="d-flex flex-column" > 
+
+        <div id="popup" ng-show="popupremove" style="margin: auto; border-radius: 20px;
+        position: absolute;
+        top: 0px; left: 0px;
+        bottom: 0px; right: 0px;
+        background-color:transparent;
+        
+        color: #0066ff;
+        z-index:5;">
+       
+        <!-- <button id="close"   style="color: rgb(0, 115, 255);position: absolute; margin : 20px; font-size: 40px; "><i class="fa fa-close"></i></button>      -->
+       
+        <lottie-player src="https://lottie.host/0d5666eb-0e6a-48e0-ab4e-78242d26fe73/JGv1UbLt6I.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <h1> Order Placed</h1>
+       
+      </div>
+
+      </div>
+
+      <div class="border container md-8">
+        <div id="removeclass" class="d-flex flex-row justify-content-between" ng-class="{ 'blur': popupremove  }" >      
+          <div class="d-flex flex-column"   >
+            
+            <div class="d-flex align-items-center justify-content-between">
+              <button ng-click="cartPage()" >
+                <h3 style="color:blue">My Cart</h3>
+              </button>                     
+            </div>       
+            <hr style="margin: 0px" />             
+            <div id="cartItems" class="row-md-8">              
+              <div ng-show="totalProductPrice==0">
+                 <!-- <lottie-player src="https://lottie.host/8e4dcbeb-0566-4c4a-bccc-2369c4a8284c/UAGyYhfroz.json" background="transparent" speed="1"  loop autoplay> </lottie-player>   -->
+                 <span>No items in cart !!</span>           
+              </div>  
+              <div class="card mb-3" ng-repeat="item in GetItems track by $index" style="max-width: 540px">
+                <div class="row g-0" >
+                  <div class="col-md-4">                   
+                    <img ng-src="imageg/{{item.image}}" 
+                   class="img-fluid img-responsive" alt="image of your item" />
+                  </div>               
+                  <div class="col-md-8"> 
+                    <div
+                      class="card-body d-flex flex-column justify-content-between"
+                    >
+                      <h6 >{{item.items}}</h6>
+                      <div class="d-flex flex-row align-items-center justify-content-evenly" >
+                          <div class="d-flex flex-row align-items-center justify-content-between" >
+                            <button class="IncDec"  ng-click="countInc(item.price,$index,count,Btntext);count=count+1 " ng-init="count=1" > <i class="fa fa-plus" style="font-size: 14px;"></i></button><p style="margin: 10px; ">{{count}}</p> <button class="IncDec" ng-disabled="item.disabled" ng-click="countDec($index,count,Btntext);count=count-1"><i class="fa fa-minus" style="font-size: 14px;"></i></button>
+                          </div>
+                        <p >&#8377;{{item.price}}</p>
+                        <button ng-click="remove($index,Btntext)" style="color: red"><i class="fa fa-close"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>                      
+              </div>
+            </div>
+          </div>
+          <div  id="ordersummary" class="col-md-4" class="checkout">
+            <div>
+              <button> <h3 style="color:blue">Order Summary</h3></button>
+              <hr style="margin:0px">
+            </div>  
+            <div style="position: relative;" class="container" id="summary" style="margin-left: 10px;">
+               <div id="popup" ng-show="popup" style="margin: auto; border-radius: 20px;
+                  position: absolute;
+                  top: 0px; left: 0px;
+                  bottom: 0px; right: 0px;
+                  background-color:blue;
+                  color: #FFF;
+                  z-index:5;">
+                  <button id="close" ng-click="removePopUp(Btntext)" style="color: rgb(255, 255, 255);position: absolute; "><i class="fa fa-close"></i></button>     
+                  <div id="popup" >
+                     <h5>Enter Discount Code</h5> 
+                     <input type="text" ng-model="DiscoutCoupon" name="Discount">                     
+                     <span ng-show="ErrorMsg">Invalid Discount Coupon</span> 
+                     <span ng-show="NotEligible">Not Eligible For This Item!!..</span>         
+                  </div>
+                  <div>
+                    <button  ng-click="applyDiscount(Btntext)" ng-disabled="btnDisable" style="color: rgb(255, 255, 255);padding: 20px;margin: 20px; border: 2px solid white;border-radius: 10px;">{{Btntext}}</button>     
+                    </div>
+                </div>
+              <div class="d-flex flex-column ">
+                  <div class="d-flex justify-content-between">
+                      <p>Sub-Total</p>
+                      <p>&#8377;{{totalProductPrice}}</p>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                      <p>Shipping</p>
+                      <p>Free</p>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Discount</p>
+                    <p>{{DiscountAmount}}</p>
+                    <span ng-show="NotEligible">Not Eligible For This Item</span> 
+                </div>
+               </div>
+                <hr>
+                <div >
+                  <!-- <div class="d-flex justify-content-between">
+                    <p> Discount </p>              
+                    <p>{{discountPrice[index]}}</p>
+                </div> -->
+                  <div class="d-flex justify-content-between">
+                      <p>Total</p>              
+                      <p>&#8377;{{displayDiscount}}</p>                      
+                  </div> 
+               
+                  <div>
+                      <button ng-disabled="btnDisable || (displayDiscount===0)" ng-click="checkOutCart(Btntext)"  id="btn">{{Btntext}}</button>
+                      <button  class="buy" ng-click="deliver()" ng-disabled="(displayDiscount===0)"> Buy Now</button>
+                  </div>
+                </div>
+            </div>                      
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

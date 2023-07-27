@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+
+    <link rel="stylesheet" href="Module/css/signin.css">
+</head>
+
+<body>
+    <div ng-app="signin" class="container" id="container">
+        <div class="style">
+            <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_1h70d9xc.json"
+                background="transparent" speed="1" style="width: 700px; height: 700px;" loop autoplay></lottie-player>
+        </div>
+        <div class="form">
+            <div class="signin">
+                <a ng-click="signin()" id="button">Signin </a>
+                <div style="background-color: blue; height: 40px; width: 9px; border-radius: 20px;">
+                </div>
+                <a ng-click="signup()" id="button1"> Signup</a>
+            </div>
+            <form id="myForm" ng-controller="sigin" ng-submit="submitform()" method="POST" ng-model="formData">
+
+                
+                <input type="hidden" name="hidden" ng-init="signin" ng-model="sign_in" value="signin">
+                <div class="forminputs">
+                    <label>Email <span id="span" style="display: none;">Email is not valid</span></label>
+                    <input type="email" class="email" id="email" ng-model="email" name="email" required>
+                </div>
+
+                <div class="forminputs">
+                    <label>Password <span id="span3" style="display: none;">password is not valid</span></label>
+                    <input type="password" class="password" id="password" ng-model="password" name="password" required>
+                </div>
+                
+                <br>
+                <div class="forminputs">
+                    <input type="submit" class="button" value="Sign-in">
+                </div>
+                <div>
+                    <span id="response"></span>
+                </div>
+                <div>
+                    <p>Doesn't Have an account ? <a ng-click="signup()"><span style="color: blue;"> Register</span> </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+ 
+</html>

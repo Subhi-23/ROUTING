@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<head>  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+      <!-- <link rel="stylesheet" href="Module/css/style.css"> -->
+  <script src="indexcontroller.js"></script>
+   
+</head>
+<style>
+  .sortby{
+    margin: 50px; 
+  }
+  a{
+      text-decoration: none;
+      font-size: 24px;
+      color: rgb(72, 72, 72);
+      cursor: pointer;
+  }
+  #button{
+      background-color:  blue;
+      color: white
+  }
+  select{
+      padding: 5px 10px;
+      margin-right:20px;
+      border-radius: 6px;
+      font-size: 14px;
+  }
+  .card{
+      padding: 0px !important;
+  }
+  .card:hover{
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+  @media (max-width: 500px){
+      
+      #image{
+          display: none;
+      }
+      #flex{
+          justify-content: space-around;
+      }
+      .noflex{
+          flex: none;
+      }
+  }
+</style>
+<body>
+ 
+    <div ng-app="my-App" ng-controller="indexcontroller" ng-init="httprequest()" >
+      
+      <div style="text-align: right; margin :  20px;  ">
+        <!--Items of the Page -->      
+       
+        <div class="d-flex justify-content-between align-items-center flex-wrap ">  
+          <div>
+            <button ng-click="clear()" style="background-color: transparent; border: none; cursor: pointer;  color:blue;font-size: 14px;text-decoration: underline;">Logout</button>
+            <button ng-click="orderhistory()" style="background-color: transparent; border: none; cursor: pointer;  color:blue;font-size: 14px;text-decoration: underline;">Order History</button>
+
+          </div>  
+          
+          <div>
+            <label> Sort by</label>
+            <!-- <select name="sorting" ng-model="sorting" ng-options="Givenoption.option for Givenoption in options" ng-change="sortby(sorting)">
+              <option value="" disabled>--Sort by--</option>
+            </select>                      -->
+            <select ng-model="priceRange" >
+              <option value="">All</option>
+              <option value="0-50">0 - 50</option>
+              <option value="50-80">50 - 80</option>
+              <option value="80-160">80 - 160</option>
+              <!-- Add more options for different price ranges -->
+            </select>       
+          <b
+            ><button style="background-color: transparent;border:none;" id="cartpage" ng-click="cart()">
+              <i
+                class="fa fa-shopping-cart"
+                style="font-size: 36px; color: blue"
+              ></i>
+              <span style="position: absolute;
+              margin-top:-20px;padding:5px 10px;color: rgb(255, 255, 255);  border-radius: 100%;
+              margin-left:-15px;font-size: 18px;font-weight: 700; background-color: blue;">{{CartLength}}</span>
+            </button>          
+          </b>
+          </div>                          
+        </div>                
+      </div>
+    
+      <div class="container"  >
+      
+        <div id="flex" class="row d-flex flex-wrap align-content-between">
+          <div>
+            <h5 > Welcome Back {{username}}!!</h5>
+          </div>
+          
+          <div
+            class="card"
+            style="width: 18rem; margin: 10px"
+            class="col"
+            ng-repeat="item in items  | Filter:priceRange | filter: search" 
+          > 
+         
+          <!--  ng-repeat="item in items | orderBy: sortfunction" -->
+            <img
+              ng-src="imageg/{{item.image}}"
+              height="150px"
+              class="img-responsive"
+              alt="image of your item"
+            />
+            <div class="card-body">             
+              <h5>
+                {{item.name}} -
+                <span style="font-size: 20px">{{item.quantity}}</span>
+              </h5>
+              <p class="card-text">
+                <span style="color: rgb(127, 127, 127)">
+                  Price: &#8377;{{item.price}}
+                </span>
+              </p>
+            </div>
+            <div>
+              <!--Buttons to Add items to cart-->
+              <button
+                class="btn btn-lg"
+                style="width: 100%"
+                ng-click="additems(item.Productid,item.name,item.image ,item.price,item.quantity,$index)"
+                 ng-disabled=item.disabled
+                id="button"
+              >
+                Add To Cart 
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

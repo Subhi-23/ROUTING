@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+</head>
+<style>
+    .body{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    table, th , td {
+            border: 2px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+ 
+</style>
+<body>     
+    <div class="body" ng-app="buy" ng-controller="buy" ng-init="intial()">       
+            <table>
+                <tr>
+                    <th>ProductId</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+               <tr  ng-repeat=" Items in GetArray"> 
+                    <td>{{Items.ProductId}}</td>
+                    <td> {{Items.ProductName}}</td>
+                    <td> {{Items.price}}</td>
+                    <td> {{Items.Quantity}}</td>              
+                <tr>                    
+                </tr> 
+            </table>    
+    </div>
+    
+</body>
+</html>

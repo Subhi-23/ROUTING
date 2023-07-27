@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="Module/css/signup.css"> 
+
+</head>
+<body>
+    <div ng-app="signup" ng-controller="signup" class="container">       
+        <div class="style">
+           <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_1h70d9xc.json"  background="transparent"  speed="1"  style="width: 700px; height: 700px;"  loop  autoplay></lottie-player>
+        </div>
+        <div class="form">
+            <div class="signin">
+                <a   ng-click="signin()"     id="button">Signin </a>
+                <div style="background-color: blue; height: 40px; width: 9px; border-radius: 20px;">              
+                </div>
+                <a  ng-click="signup()"   id="button1"> Signup</a>
+            </div>
+            <form id="myForm" ng-submit="submitform()"  method="POST" ng-model="formData" >
+                <input type="hidden" name="hidden" value="register">
+                
+                <div class="forminputs">
+                    <label>First Name <span id="span1" style="display: none;">Name is not valid</span> </label>
+                   <input type="text" ng-model="firstName"  id="firstName" name="firstName" required>
+                </div>
+                <div  class="forminputs">
+                    <label>Email <span id="span" style="display: none;">Email is not valid</span></label>
+                    <input type="email" ng-model="email" class="email" id="email" name="email" required >
+                </div>
+               <div  class="forminputs">
+                <label>Password <span id="span3" style="display: none;">password is not valid</span></label>
+                <input type="password" ng-model="password" class="password" id="password" name="password" required>
+                
+               </div>
+                <div  class="forminputs">
+                    <label>Confirm Password<span id="span4" style="display: none;"> Not Matched</span></label>
+                    <input type="password" ng-model="confirm_password" class="confirm-password" id="confirmpassword" name="confirmpassword" required>
+                </div>
+                <div  class="forminputs">
+                    <label>Phone Number <span id="span2" style="display: none;">Num not valid</span></label>
+                    <input type="text" class="phnNumber" ng-model="phoneNumber" id="phoneNumber" maxlength="10" name="phoneNumber" required>
+                </div>
+
+                <!-- <div  class="forminputs">
+                    <label>OTP</label>
+                    <input type="text" class="otp">
+                </div> -->
+                <div class="forminputs">
+                    <input class="button" type="submit" value="Sign-up" >
+                </div>
+                <div>
+                    <span id="response"></span>
+                </div>
+                <div>
+                    <p>Already Have an account?  <a ng-click="signin()" style="text-decoration: dashed;"> <span style="color: blue;"> SignIn</span> </a></p>
+                </div>          
+            </form>
+        </div>      
+    </div>
+</body>
+<!-- <script>
+         $(document).ready(function() {
+            console.log("hello"); 
+            $('#myForm').submit(function(event) {
+                event.preventDefault();  
+                console.log("hello");                           
+                var formData = $(this).serialize();                
+                $.ajax({
+                    type: 'POST',
+                    url: './insert.php',
+                    data: formData,
+                    success: function(response) {
+                        document.getElementById("response").innerHTML=response;            
+                    }        
+                });
+            });            
+        });
+</script> -->
+</html>

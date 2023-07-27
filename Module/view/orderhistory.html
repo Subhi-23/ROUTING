@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER HISTORY</title>
+    <script src=“https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js”></script>
+
+</head>
+<style> 
+    .body{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .flex{
+      display: flex;
+        align-items: flex-start;
+        justify-content: start;
+        flex-direction: row;
+        margin: 20px;
+    }
+       .back{
+        background-color: transparent;
+        border: none;
+        color: blue;
+       }
+     
+</style>
+<body>
+  <div class="flex">
+    <button class="back" ng-click="index()"> &#8592; Back</button>
+    <h2 style="text-align: center; margin: 20px;" class="text-primary" >ORDER HISTORY</h2>
+  </div>  
+    <div class="body" ng-app="order" ng-controller="order" ng-init="order()">                 
+        <table class="table table-bordered text-center">
+
+          <thead>
+            <tr>
+              <th scope="col"> Order Id : </th>
+              <th scope="col" > Order Placed</th>
+              <th scope="col" colspan="2">Orders</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat=" Items in GetArray">
+             <td> {{ $index + 1}}</td>
+             
+      <td>{{formatTime(Items.Time)}}</td>
+              <td>{{Items.ProductName}}.. ({{Items.count}})</td> 
+             
+              <td> <button class="btn btn-primary" ng-click="viewdetails(Items.Time)">view details</button> </td>
+            </tr>
+            
+          </tbody>
+       
+        </table>            
+    </div>   
+</body>
+</html>
